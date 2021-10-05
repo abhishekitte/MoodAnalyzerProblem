@@ -9,11 +9,18 @@ namespace MoodAnalyzerProblem1
     public class MoodAnalyzer
     {
         public string message;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MoodAnalyzer"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param
+        public MoodAnalyzer()
+        {
+            Console.WriteLine("Default Constructor");
+        }
         public MoodAnalyzer(string message)
         {
             this.message = message;
         }
-
         public string AnalyzeMood()
         {
             try
@@ -39,7 +46,6 @@ namespace MoodAnalyzerProblem1
             {
                 return ex.Message;
             }
-
         }
     }
 }
