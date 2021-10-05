@@ -9,18 +9,42 @@ namespace MsTestforMoodAnalyzer
     public class MsTestForMoodAnalyzer
     {
         [TestMethod]
-        [TestCategory("negativescenario")]
-        public void GivenNullShouldReturnHappy()
+        [TestCategory("Customexception")]
+        public void GivenNullShouldReturnCustomNullException()
         {
             //Arrange
-            string excepted = "happy";
+            string excepted = "Message should not be null";
             MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
+            try
+            {
+                //ACT
+                string actual = moodAnalyser.AnalyzeMood();
+            }
+            catch (CustomMoodAnalyzerException ex)
+            {
+                //ASSERT
+                Assert.AreEqual(excepted, ex.Message);
+            }
+        }
 
-            //ACT
-            string actual = moodAnalyser.AnalyzeMood();
+        [TestMethod]
+        [TestCategory("Customexception")]
+        public void GivenEmptyShouldReturnCustomEmptyException()
+        {
 
-            //ASSERT
-            Assert.AreEqual(excepted, actual);
+            //Arrange
+            string excepted = "Message should not be empty";
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer(string.Empty);
+            try
+            {
+                //ACT
+                string actual = moodAnalyser.AnalyzeMood();
+            }
+            catch (CustomMoodAnalyzerException ex)
+            {
+                //ASSERT
+                Assert.AreEqual(excepted, ex.Message);
+            }
         }
     }
 }
